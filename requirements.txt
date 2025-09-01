@@ -1,0 +1,10 @@
+streamlit
+pandas
+pymupdf
+pytesseract
+Pillow
+langchain
+langchain-google-genai
+langchain-experimental
+faiss-cpu
+unstructured
