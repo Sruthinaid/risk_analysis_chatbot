@@ -9,12 +9,15 @@ from PIL import Image
 import io
 
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
-from langchain.vectorstores import FAISS
+
+# Updated imports for LangChain community packages
+from langchain_community.vectorstores import FAISS
+from langchain_community.document_loaders import UnstructuredWordDocumentLoader
+
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
-from langchain.document_loaders import UnstructuredWordDocumentLoader
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain.agents.agent_types import AgentType
 
@@ -25,9 +28,9 @@ except RuntimeError:
     asyncio.set_event_loop(asyncio.new_event_loop())
 
 # ---- Google API Key ----
-api_key = "AIzaSyD2ijWmRFSSyPwTcMOD6zPb0kE514nmozo"
+api_key = "AIzaSyBl_KaS_yqVgbumjfC_az-RdQPfQpubUmE"
 
-st.title("📄 Supply Chain Risk Analysis ")
+st.title("📄 Supply Chain Risk Analysis Chatbot")
 
 uploaded_file = st.file_uploader(
     "Upload a document (PDF, TXT, CSV, DOCX)", type=["pdf", "txt", "csv", "docx"]
@@ -84,6 +87,7 @@ if uploaded_file:
                 google_api_key=api_key
             )
 
+            # Create pandas agent
             agent = create_pandas_dataframe_agent(
                 llm,
                 df,
@@ -134,4 +138,3 @@ if uploaded_file:
             with st.spinner("Thinking..."):
                 answer = qa.run(question)
             st.write("**Answer:**", answer)
-
