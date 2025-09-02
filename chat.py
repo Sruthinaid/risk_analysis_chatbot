@@ -27,7 +27,7 @@ except RuntimeError:
 # ---- Google API Key ----
 api_key = "AIzaSyD2ijWmRFSSyPwTcMOD6zPb0kE514nmozo"
 
-st.title("📄 Supply Chain Risk Analysis Chatbot")
+st.title("📄 Supply Chain Risk Analysis ")
 
 uploaded_file = st.file_uploader(
     "Upload a document (PDF, TXT, CSV, DOCX)", type=["pdf", "txt", "csv", "docx"]
@@ -134,3 +134,4 @@ if uploaded_file:
             with st.spinner("Thinking..."):
                 answer = qa.run(question)
             st.write("**Answer:**", answer)
+
